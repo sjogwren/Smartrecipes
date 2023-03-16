@@ -1,0 +1,241 @@
+﻿@model SmartReservation.Model.Recipe
+<main id="content" role="main" class="main">
+    <div class="content container-fluid">
+        <div class="page-header">
+            <div class="row align-items-center">
+                <div class="col-sm mb-2 mb-sm-0">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb breadcrumb-no-gutter">
+                            <li class="breadcrumb-item"><span class="breadcrumb-link">Recipes</span></li>
+                            <li class="breadcrumb-item active" aria-current="page">New</li>
+                        </ol>
+                    </nav>
+
+                    <h1 class="page-header-title">New Recipe</h1>
+                </div>
+            </div>
+        </div>
+        <!-- End Breadcrumb Section -->
+        <!-- Content Section -->
+        <div class="container-fluid">
+            <form class="js-validate" id="form1" method="post" asp-action="Newrecipe" asp-controller="Recipe" enctype="multipart/form-data">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <p class="card-header-title">
+                                    Recipe Form
+                                </p>
+                            </div>
+                            <div class="card-body">
+                                @if (Model.UniqueRecipe != null)
+                                {
+                                    <div class="alert alert-soft-danger" role="alert">@Model.UniqueRecipe</div>
+                                }
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <!-- Form Group -->
+                                        <div class="form-group js-form-message">
+                                            <label class="input-label">Recipe Name</label>
+                                            <input id="recipeName" type="text" class="form-control" required
+                                                   data-msg="Please enter a recipe name." placeholder="Recipe Name" aria-label="Recipe Name" asp-for="@Model.Name">
+
+                                        </div>
+                                        <!-- End Form Group -->
+                                    </div>
+
+                                    <div class="col-sm-6">
+                                        <!-- Form Group -->
+                                        <label class="input-label">Ingredients</label>
+                                        <select id="IngredientReasons" class="js-select2-custom custom-select" multiple asp-items="@Model.IngredientsDDL" size="1" style="opacity: 0;" required onchange="javascript:onIngredientsReasonClick()"
+                                                data-hs-select2-options='{
+                                           "minimumResultsForSearch": "Infinity"
+                                         }'>
+                                        </select>
+                                        <!-- End Select2 -->
+                                    </div>
+                                    <!-- End Form Group -->
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <!-- Form Group -->
+                                        <div class="form-group js-form-message">
+                                            <label class="input-label">Instructions</label>
+                                            <div>
+                                                <input type="text" asp-for="@Model.Instructions" class="form-control" />
+                                            </div>
+
+                                        </div>
+                                        <!-- End Form Group -->
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="modal-body js-form-message">
+                                            <!-- Dropzone -->
+                                            <!-- Dropzone -->
+                                            <div id="attachFilesLabel" class="custom-file-boxed">
+                                                <div class="dz-message custom-file-boxed-label">
+                                                    <img class="avatar avatar-xl avatar-4by3 mb-3" src="~/front-dashboard-v1.1/src/assets/svg/illustrations/browse.svg" alt="Image Description">
+
+                                                    <h5>Drag and drop your file here</h5>
+
+                                                    <p class="mb-2">or</p>
+
+                                                    <input type="file" name="File" class="form-control" required />
+                                                </div>
+                                            </div>
+                                            <!-- End Dropzone -->
+                                            <!-- End Dropzone -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-footer" style="border-bottom:none">
+                                <a class="btn btn-white" style="float:right" href="@Url.Action("Currentrecipes", "Recipe")">Cancel</a>
+                                <input style="float:right" type="submit" value="Save" class="btn btn-primary mr-2" id="btnSave" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr class="my-5">
+                <!-- End Form -->
+                <input type="hidden" id="selectedText" asp-for="@Model.IngredientsSelectedText" />
+                <input type="hidden" id="removedText" asp-for="@Model.IngredientsDeletedText" />
+            </form>
+        </div>
+        <!-- End Content Section -->
+    </div>
+</main>
+<!-- ========== END MAIN ========== -->
+@section scripts {
+    <script src="~/front-dashboard-v1.1/dist/assets/vendor/dropzone/dist/dropzone.js"></script>
+    <script src="~/front-dashboard-v1.1/dist/assets/vendor/dropzone/dist/min/dropzone.min.js"></script>
+    <script>
+        var removeBookingReasons = [];
+        $(document).on('ready', function () {
+            // INITIALIZATION OF DROPZONE FILE ATTACH MODULE
+            // =======================================================
+            $('.js-dropzone').each(function () {
+                var dropzone = $.HSCore.components.HSDropzone.init('#' + $(this).attr('id'));
+                dropzone.on("addedfile", function (file) {
+                    console.log(file.name);
+                });
+            });
+
+            onIngredientsReasonClick();
+            $('#IngredientReasons').on('select2:unselecting', function (e) {
+                var id = e.params.args.data.id; //your id
+                removeBookingReasons.push(id);
+                $('#removedText').val(removeBookingReasons);
+            });
+        });
+
+        function onIngredientsReasonClick() {
+
+            var dataSet = [];
+            var selections = $("#IngredientReasons").select2('data');
+            $.each(selections, function (index, value) {
+                dataSet.push(value.id);
+            });
+            $('#selectedText').val(dataSet);
+        }
+
+
+        @*; (function ($) {
+            'use strict';
+            $.HSCore.components.HSDropzone = {
+                defaults: {
+                    // Default variables
+                    url: "#",
+                    thumbnailWidth: 300,
+                    autoDiscover: false,
+                    uploadMultiple: true,
+                    autoProcessQueue: false,
+                    parallelUploads: 10,
+                    paramName: function myParamName() {
+                        return "File";
+                    },
+                    thumbnailHeight: 300,
+                    previewTemplate: $('<div>' +
+                        '  <div class="col h-100 px-1 mb-2">' +
+                        '    <div class="dz-preview dz-file-preview">' +
+                        '      <div class="d-flex justify-content-end dz-close-icon">' +
+                        '        <small class="tio-clear" data-dz-remove></small>' +
+                        '      </div>' +
+                        '      <div class="dz-details media">' +
+                        '        <div class="dz-img">' +
+                        '         <img class="img-fluid dz-img-inner" data-dz-thumbnail>' +
+                        '        </div>' +
+                        '        <div class="media-body dz-file-wrapper">' +
+                        '         <h6 class="dz-filename">' +
+                        '          <span class="dz-title" data-dz-name></span>' +
+                        '         </h6>' +
+                        '         <div class="dz-size" data-dz-size></div>' +
+                        '        </div>' +
+                        '      </div>' +
+                        '      <div class="dz-progress progress">' +
+                        '        <div class="dz-upload progress-bar bg-success" role="progressbar" style="width: 100%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" data-dz-uploadprogress></div>' +
+                        '      </div>' +
+                        '      <div class="d-flex align-items-center">' +
+                        '        <div class="dz-success-mark">' +
+                        '          <span class="tio-checkmark-circle"></span>' +
+                        '        </div>' +
+                        '      </div>' +
+                        '    </div>' +
+                        '  </div>' +
+                        '</div>').html()
+                },
+                init: function (el, options) {
+                    if (!el.length) return;
+                    var context = this,
+                        $el = $(el),
+                        defaults = Object.assign({}, context.defaults),
+                        dataSettings = $el.attr('data-hs-dropzone-options') ? JSON.parse($el.attr('data-hs-dropzone-options')) : {},
+                        settings = {
+                            init: function () {
+                                var $this = this,
+                                    $message = $($this.element).find('.dz-message');
+                                $this.on('addedfile', function (file) {
+                                    if (String(file.type).slice(0, 6) !== 'image/') {
+                                        $(file.previewElement).find('.dz-img').replaceWith('<span class="dz-file-initials">' + file.name.substring(0, 1).toUpperCase() + '</span>');
+                                    }
+                                    $message.hide();
+                                });
+                                $this.on('removedfile', function () {
+                                    if ($this.files.length <= 0) {
+                                        $message.show();
+                                    }
+                                });
+                                $this.on("success", function (file, responseText) {
+                                            var responseText = file.name // or however you would point to your assigned file ID here;
+                                            console.log(responseText); // console should show the ID you pointed to
+                                            // do stuff with file.id ...
+
+                                        });
+                                var submitButton = document.querySelector("#btnSave");
+                                var myDropzone = this; //closure
+                                submitButton.addEventListener("click", function (e) {
+                                    //tell Dropzone to process all queued files
+                                    myDropzone.processQueue();
+                                    e.preventDefault();
+                                    setTimeout(function () {
+                                            window.location.href = '@Url.Action("Currentrecipes","Recipe")'
+                                        }, 1000);
+                                });
+                                $this.on("sending", function (file, xhr, formData) {
+                                    $('#form1').find('input').each(function ()
+                                    {
+                                        formData.append($(this).attr('name'), $(this).val());
+                                    });
+                                });
+                            }
+                        };
+                    settings = $.extend(true, defaults, settings, dataSettings, options);
+                    /* Start : Init */
+                    var newDropzone = new Dropzone(el, settings);
+                    /* End : Init */
+                    return newDropzone;
+                }
+            };
+        })(jQuery);*@
+    </script>
+}

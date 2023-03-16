@@ -1,0 +1,149 @@
+﻿@page
+@using Microsoft.Extensions.Configuration
+@inject IConfiguration Configuration
+@model RegisterModel
+
+@{
+    ViewData["Title"] = "Log in";
+    Layout = "_LayoutUserPortal";
+    var template = $"{Configuration.GetSection("URL").GetSection("template").Value}";
+}
+<div class="col-lg-6 d-flex justify-content-center align-items-center min-vh-lg-100">
+    <div class="w-100 pt-10 pt-lg-7 pb-7" style="max-width: 25rem;">
+        <!-- Form -->
+        <form class="js-validate" id="form" method="post">
+            <div class="text-center mb-5">
+                <h1 class="display-4">Register</h1>
+                @*<p>Don't have an account yet? <a asp-page="./ForgotPassword">Sign up here</a></p>*@
+            </div>
+
+            <!-- Form Group -->
+            <div class="js-form-message form-group registerClass">
+                <label class="input-label" for="txtFirstName">First Name</label>
+                <input type="text" class="form-control formClass" asp-for="Input.FirstName" required id="txtFirstName">
+
+            </div>
+            <div class="js-form-message form-group registerClass">
+                <label class="input-label" for="txtSurname">Surname</label>
+                <input type="text" class="form-control formClass" asp-for="Input.LastName" required id="txtSurname">
+
+            </div>
+
+            <div class="js-form-message form-group registerClass">
+                <label class="input-label" for="txtEmail">Your email</label>
+                <input type="text" class="form-control formClass" asp-for="Input.Email" required id="txtEmail">
+                <span style="color:#ed4c78;font-size: 80%;">@Model.EmailExist</span>
+            </div>
+
+            <div class="js-form-message form-group registerClass">
+                <label class="input-label" for="txtCellphone">Cellphone</label>
+                <input type="text" class="form-control formClass" asp-for="Input.PhoneNumber" required id="txtCellphone" maxlength="13">
+
+            </div>
+
+
+            <div class="js-form-message form-group registerClass">
+                <label class="input-label" for="txtPassword">Password</label>
+                <input type="password" class="form-control formClass" asp-for="Input.Password" required id="txtPassword">
+
+            </div>
+            <div class="d-flex justify-content-center" style="visibility:hidden" id="spinnerRegister">
+                <div class="spinner-border" role="status">
+                    <span class="visually-hidden"></span>
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-lg btn-block btn-primary" id="btnRegister">Register</button>
+            <a href="/Identity/Account/Login" class="btn btn-lg btn-block btn-primary" id="btnLogin">Login</a>
+        </form>
+    </div>
+</div>
+@section scripts{
+<script type="text/javascript">
+ $( "#txtSurname" ).keypress(function(e) {
+                    var key = e.keyCode;
+                    if (key >= 48 && key <= 57) {
+                        e.preventDefault();
+                    }
+                });
+
+
+     $( "#txtFirstName" ).keypress(function(e) {
+                    var key = e.keyCode;
+                    if (key >= 48 && key <= 57) {
+                        e.preventDefault();
+                    }
+                });
+
+
+    $('#txtCellphone').keyup(function(e){
+          if (/\D/g.test(this.value))
+          {
+            this.value = this.value.replace(/\D/g, '');
+          }
+    });
+
+    $("#btnRegister").click(function(){
+          const response = $('.registerClass').map(function () {
+          var obj = {};
+          $(this).find('input.formClass').each(function (i, el) {
+                    if (el.value != "") {
+                        document.getElementById('spinnerRegister').style.visibility = 'visible';
+                    }
+          })
+          return obj
+        }).get()
+    })
+</script>
+<style>
+    #btnRegister {
+ box-shadow: 3px 4px 0px 0px #899599;
+ background:linear-gradient(to bottom, #ededed 5%, #bab1ba 100%);
+ background-color:#ededed;
+ border-radius:15px;
+ border:1px solid #d6bcd6;
+ display:inline-block;
+ cursor:pointer;
+ color:#3a8a9e;
+ font-family:Arial;
+ font-size:17px;
+ padding:7px 25px;
+ text-decoration:none;
+ text-shadow:0px 1px 0px #e1e2ed;
+}
+#btnRegister:hover {
+ background:linear-gradient(to bottom, #bab1ba 5%, #ededed 100%);
+ background-color:#bab1ba;
+}
+#btnRegister:active {
+ position:relative;
+ top:1px;
+}
+</style>
+
+<style>
+    #btnLogin {
+ box-shadow: 3px 4px 0px 0px #899599;
+ background:linear-gradient(to bottom, #ededed 5%, #bab1ba 100%);
+ background-color:#ededed;
+ border-radius:15px;
+ border:1px solid #d6bcd6;
+ display:inline-block;
+ cursor:pointer;
+ color:#3a8a9e;
+ font-family:Arial;
+ font-size:17px;
+ padding:7px 25px;
+ text-decoration:none;
+ text-shadow:0px 1px 0px #e1e2ed;
+}
+#btnLogin:hover {
+ background:linear-gradient(to bottom, #bab1ba 5%, #ededed 100%);
+ background-color:#bab1ba;
+}
+#btnLogin:active {
+ position:relative;
+ top:1px;
+}
+</style>
+}

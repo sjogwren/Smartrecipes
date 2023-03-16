@@ -1,0 +1,98 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Remove="appsettings.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Configuration\1.2\Configuration_4.sql" />
+    <None Remove="Configuration\1.2\Configuration_5.sql" />
+    <None Remove="Configuration\1.2\Configuration_6.sql" />
+    <None Remove="Configuration\1.2\Configuration_7.sql" />
+    <None Remove="Configuration\1.2\Configuration_8.sql" />
+    <None Remove="Configuration\Configuration_1.sql" />
+    <None Remove="Configuration\Configuration_2.sql" />
+    <None Remove="Configuration\Configuration_3.sql" />
+    <None Remove="Configuration\Configuration_4.sql" />
+    <None Remove="Configuration\Configuration_5.sql" />
+    <None Remove="Configuration\Configuration_6.sql" />
+    <None Remove="Configuration\Configuration_7.sql" />
+    <None Remove="Configuration\Configuration_8.sql" />
+    <None Remove="Configuration\Configuration_9.sql" />
+    <None Remove="Configuration\Configuration_9_1.sql" />
+    <None Remove="Configuration\Configuration_9_2.sql" />
+    <None Remove="Configuration\Configuration_9_3.sql" />
+    <None Remove="Configuration\Function Compund Split.sql" />
+    <None Remove="Configuration\Procedure Check If Recipe Exist.sql" />
+    <None Remove="Configuration\Procedure Check If Registration Exist.sql" />
+    <None Remove="Configuration\Procedure Recipe Insert.sql" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Configuration\1.2\Configuration_1.sql" />
+    <EmbeddedResource Include="Configuration\1.2\Configuration_2.sql" />
+    <EmbeddedResource Include="Configuration\1.2\Configuration_3.sql" />
+    <EmbeddedResource Include="Configuration\1.1\Configuration_5.sql" />
+    <EmbeddedResource Include="Configuration\1.1\Configuration_1.sql" />
+    <EmbeddedResource Include="Configuration\1.1\Configuration_2.sql" />
+    <EmbeddedResource Include="Configuration\1.1\Configuration_3.sql" />
+    <EmbeddedResource Include="Configuration\1.1\Configuration_4.sql" />
+    <EmbeddedResource Include="Configuration\1.1\Configuration_6.sql" />
+    <EmbeddedResource Include="Configuration\1.1\Configuration_7.sql" />
+    <EmbeddedResource Include="Configuration\1.1\Configuration_8.sql" />
+    <EmbeddedResource Include="Configuration\1.2\Configuration_4.sql" />
+    <EmbeddedResource Include="Configuration\1.2\Configuration_5.sql" />
+    <EmbeddedResource Include="Configuration\1.2\Configuration_6.sql" />
+    <EmbeddedResource Include="Configuration\1.2\Configuration_7.sql" />
+    <EmbeddedResource Include="Configuration\1.2\Configuration_8.sql" />
+    <EmbeddedResource Include="Configuration\1.2\Function Compund Split.sql" />
+    <EmbeddedResource Include="Configuration\1.2\Procedure Check If Registration Exist.sql" />
+    <EmbeddedResource Include="Configuration\1.2\Procedure Recipe Insert.sql" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="appsettings.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="dbup" Version="4.6.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.25" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="3.1.25" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="3.1.32" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.25">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.25" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.25">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.5" />
+    <PackageReference Include="Serilog" Version="2.10.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SmartReservation.Interface\SmartReservation.Interface.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Configuration\1.1\Configuration_9.sql" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Html\ResetPassword.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Sitemap.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+</Project>

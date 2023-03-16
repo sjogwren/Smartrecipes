@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<mvcSiteMap>
+	<mvcSiteMapNode mainTitle="Recipes" icon="far fa-clipboard-list-check">
+		<mvcSiteMapSubTitle subTitle="Recipe Administration">
+			<mvcSiteMapSubTitle subTitle="Recipes" controller="Recipe" action="Currentrecipes" roles="Admin, User"/>
+		</mvcSiteMapSubTitle>
+	</mvcSiteMapNode>
+
+  <mvcSiteMapNode mainTitle="New Recipe" icon="far fa-clipboard-list-check">
+    <mvcSiteMapSubTitle subTitle="Recipe Creation">
+      <mvcSiteMapSubTitle subTitle="Recipes" controller="Recipe" action="Newrecipes" roles="Admin"/>
+    </mvcSiteMapSubTitle>
+  </mvcSiteMapNode>
+</mvcSiteMap>

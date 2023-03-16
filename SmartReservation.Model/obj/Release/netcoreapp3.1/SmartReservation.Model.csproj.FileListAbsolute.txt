@@ -1,0 +1,10 @@
+C:\Users\zaino\Documents\Visual Studio 2019\Projects\SmartReservation\SmartReservation.Model\bin\Release\netcoreapp3.1\SmartReservation.Model.deps.json
+C:\Users\zaino\Documents\Visual Studio 2019\Projects\SmartReservation\SmartReservation.Model\bin\Release\netcoreapp3.1\SmartReservation.Model.dll
+C:\Users\zaino\Documents\Visual Studio 2019\Projects\SmartReservation\SmartReservation.Model\bin\Release\netcoreapp3.1\SmartReservation.Model.pdb
+C:\Users\zaino\Documents\Visual Studio 2019\Projects\SmartReservation\SmartReservation.Model\obj\Release\netcoreapp3.1\SmartReservation.Model.csproj.AssemblyReference.cache
+C:\Users\zaino\Documents\Visual Studio 2019\Projects\SmartReservation\SmartReservation.Model\obj\Release\netcoreapp3.1\SmartReservation.Model.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\zaino\Documents\Visual Studio 2019\Projects\SmartReservation\SmartReservation.Model\obj\Release\netcoreapp3.1\SmartReservation.Model.AssemblyInfoInputs.cache
+C:\Users\zaino\Documents\Visual Studio 2019\Projects\SmartReservation\SmartReservation.Model\obj\Release\netcoreapp3.1\SmartReservation.Model.AssemblyInfo.cs
+C:\Users\zaino\Documents\Visual Studio 2019\Projects\SmartReservation\SmartReservation.Model\obj\Release\netcoreapp3.1\SmartReservation.Model.csproj.CoreCompileInputs.cache
+C:\Users\zaino\Documents\Visual Studio 2019\Projects\SmartReservation\SmartReservation.Model\obj\Release\netcoreapp3.1\SmartReservation.Model.dll
+C:\Users\zaino\Documents\Visual Studio 2019\Projects\SmartReservation\SmartReservation.Model\obj\Release\netcoreapp3.1\SmartReservation.Model.pdb

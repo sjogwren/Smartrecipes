@@ -1,0 +1,56 @@
+﻿@model List<SmartReservation.Model.Recipe>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<main id="content" role="main" class="main">
+    <div class="content container-fluid">
+        <div class="page-header">
+            <div class="row align-items-center">
+                <div class="col-sm mb-2 mb-sm-0">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb breadcrumb-no-gutter">
+                            <li class="breadcrumb-item"><span class="breadcrumb-link">Recipes</span></li>
+                            <li class="breadcrumb-item active" aria-current="page">Current</li>
+                        </ol>
+                    </nav>
+
+                    <h1 class="page-header-title">Current Recipes</h1>
+                </div>
+            </div>
+        </div>
+        <div class="content container-fluid my-n9">
+            <div class="container content-space-2 content-space-lg-3">
+
+                <div class="row mb-5 mt-5" id="columnV">
+                    @foreach (var item in Model)
+                    {
+                        <div class="col-sm-6 col-md-4 mb-3 mb-md-0">
+                            <a class="card card-bordered card-transition h-100" href="@Url.Action("Details", "Recipe", new { recipeID = item.RecipeID })">
+                                <img class="card-img-top" src="~/Files/@item.ImageName" alt="Image Description" style="height:300px;">
+
+                                <div class="card-body">
+                                    <div class="d-flex align-items-center mb-2">
+                                        <h4 class="card-title mb-0">@item.Name</h4>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    }
+                </div>
+                <!-- End Row -->
+
+                <div class="text-center">
+                    <a class="btn btn-outline-primary btn-transition" id="btnLoadMore" href="@Url.Action("Currentrecipes","Recipe", new { clicked = "clicked"})">Load More</a>
+                </div>
+            </div>
+            <!-- End Card Grid -->
+        </div>
+    </div>
+</main>
+
+
+<!-- Card Grid -->

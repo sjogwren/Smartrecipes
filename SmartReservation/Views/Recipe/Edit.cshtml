@@ -1,0 +1,133 @@
+﻿@model SmartReservation.Models.DetailViewModel
+<main id="content" role="main" class="main">
+    <div class="content container-fluid">
+        <div class="page-header">
+            <div class="row align-items-center">
+                <div class="col-sm mb-2 mb-sm-0">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb breadcrumb-no-gutter">
+                            <li class="breadcrumb-item"><span class="breadcrumb-link">Recipes</span></li>
+                            <li class="breadcrumb-item active" aria-current="page">New</li>
+                        </ol>
+                    </nav>
+
+                    <h1 class="page-header-title">New Recipe</h1>
+                </div>
+            </div>
+        </div>
+        <!-- End Breadcrumb Section -->
+        <!-- Content Section -->
+        <div class="container-fluid">
+            <form class="js-validate" id="form1" method="post" asp-action="Edit" asp-controller="Recipe" enctype="multipart/form-data">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <p class="card-header-title">
+                                    Recipe Form
+                                </p>
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <!-- Form Group -->
+                                        <div class="form-group js-form-message">
+                                            <label class="input-label">Recipe Name</label>
+                                            <input id="recipeName" type="text" class="form-control" required
+                                                   data-msg="Please enter a recipe name." placeholder="Recipe Name" aria-label="Recipe Name" asp-for="@Model.Recipe.Name">
+
+                                        </div>
+                                        <!-- End Form Group -->
+                                    </div>
+
+                                    <div class="col-sm-6">
+                                        <!-- Form Group -->
+                                        <label class="input-label">Ingredients</label>
+                                        <select id="IngredientReasons" class="js-select2-custom custom-select" multiple size="1" style="opacity: 0;" required onchange="javascript:onIngredientsReasonClick()"
+                                                data-hs-select2-options='{
+                                           "minimumResultsForSearch": "Infinity"
+                                         }'>
+
+                                            @{
+                                                var matched = Model.IngredientsList.Where(a => Model.RecipeIngredientsList.Any(x => x.IngredientID == a.IngredientID));
+                                                var firstDiffSecond = Model.IngredientsList.Where(item => !Model.RecipeIngredientsList.Any(e => item.IngredientID == e.IngredientID));
+
+                                                foreach (var item in matched)
+                                                {
+                                                    <option value="@item.IngredientID" selected>@item.Name</option>
+
+                                                }
+                                                foreach (var item in firstDiffSecond)
+                                                {
+                                                    <option value="@item.IngredientID">@item.Name</option>
+                                                }
+                                            }
+
+                                        </select>
+                                        <!-- End Select2 -->
+                                    </div>
+                                    <!-- End Form Group -->
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <!-- Form Group -->
+                                        <div class="form-group js-form-message">
+                                            <label class="input-label">Instructions</label>
+                                            <div>
+                                                <input type="text" asp-for="@Model.Recipe.Instructions" class="form-control" />
+                                            </div>
+
+                                        </div>
+                                        <!-- End Form Group -->
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-6" id="fileInput">
+                                        <div class="form-group">
+                                            <label>New File</label>
+                                            <input type="file" name="File" class="form-control" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-footer" style="border-bottom:none">
+                                <a class="btn btn-white" style="float:right" href="@Url.Action("Currentrecipes", "Recipe")">Cancel</a>
+                                <input style="float:right" type="submit" value="Save" class="btn btn-primary mr-2" id="btnSave" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr class="my-5">
+                <!-- End Form -->
+                <input type="hidden" id="selectedText" asp-for="@Model.Recipe.IngredientsSelectedText" />
+                <input type="hidden" id="removedText" asp-for="@Model.Recipe.IngredientsDeletedText" />
+                <input type="hidden" asp-for="@Model.recipeID" />
+            </form>
+        </div>
+        <!-- End Content Section -->
+    </div>
+</main>
+<!-- ========== END MAIN ========== -->
+@section scripts {
+    <script>
+        var removeBookingReasons = [];
+        $(document).on('ready', function () {
+            onIngredientsReasonClick();
+            $('#IngredientReasons').on('select2:unselecting', function (e) {
+                var id = e.params.args.data.id; //your id
+                removeBookingReasons.push(id);
+                $('#removedText').val(removeBookingReasons);
+            });
+        });
+
+        function onIngredientsReasonClick() {
+
+            var dataSet = [];
+            var selections = $("#IngredientReasons").select2('data');
+            $.each(selections, function (index, value) {
+                dataSet.push(value.id);
+            });
+            $('#selectedText').val(dataSet);
+        }
+    </script>
+}

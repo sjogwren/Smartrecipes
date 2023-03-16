@@ -1,0 +1,124 @@
+﻿@model SmartReservation.Models.DetailViewModel
+<main id="content" role="main" class="main">
+    <div class="content container-fluid">
+        <div class="page-header">
+            <div class="row align-items-center">
+                <div class="col-sm mb-2 mb-sm-0">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb breadcrumb-no-gutter">
+                            <li class="breadcrumb-item"><span class="breadcrumb-link">Recipes</span></li>
+                            <li class="breadcrumb-item active" aria-current="page">Overview</li>
+                        </ol>
+                    </nav>
+
+                    <h1 class="page-header-title">Recipe Details</h1>
+                </div>
+            </div>
+        </div>
+        <!-- End Breadcrumb Section -->
+        <!-- Content Section -->
+        <div class="container-fluid">
+            <div class="row justify-content-lg-center">
+                <div class="col-lg-9">
+                    <div class="container content-space-2 content-space-lg-3">
+                        <!-- Title -->
+                        <div class="w-md-75 w-lg-50 text-center mx-md-auto mb-5 mb-md-9">
+                            <span class="d-flex align-items-center">
+                                @{
+                                    var activeText = "";
+                                    var color = "";
+                                    var btnText = "";
+                                    var btnRecycleIcon = "";
+
+                                    if (Model.Recipe.DeletedOn == null)
+                                    {
+
+
+
+                                        activeText = "Active";
+                                        color = "bg-success";
+                                        btnText = "Deactivate";
+                                        btnRecycleIcon = "fal fa-trash-undo-alt mr-1";
+                                    }
+                                    else
+                                    {
+                                        activeText = "Inactive";
+                                        color = "bg-danger";
+                                        btnText = "Activate";
+                                        btnRecycleIcon = "fal fa-trash-alt mr-1";
+                                    }
+                                }
+                            </span>
+                            <h2>
+                                @Model.Recipe.Name                                <span class="legend-indicator @color mr-2">
+                                </span>
+                                <small class="d-block">@activeText</small>
+                            </h2>
+                            <p><img src="~/Files/@Model.Recipe.ImageName" style="width:300px;height:300px" /></p>
+                        </div>
+                        <!-- End Title -->
+                        @if (User.IsInRole("Admin"))
+                        {
+                            <div class="text-center">
+                                <!-- Nav -->
+                                <ul class="nav nav-segment mb-7">
+                                    <li class="nav-item" role="presentation">
+                                        <a class="nav-link btn btn-primary mr-5" href="@Url.Action("Edit", "Recipe", new { recipeID = Model.Recipe.RecipeID})">Edit</a>
+                                    </li>
+
+                                    <li class="nav-item" role="presentation">
+                                        <a class="nav-link btn @color" href="@Url.Action("Delete", "Recipe", new { recipeID = Model.Recipe.RecipeID, btnClick =@btnText})"><i class="@btnRecycleIcon"></i>@btnText</a>
+                                    </li>
+                                </ul>
+                                <!-- End Nav -->
+                            </div>
+                        }
+                    </div>
+                    <!-- Content -->
+                    <div class="container content-space-2 content-space-b-lg-3">
+                        <div class="w-lg-75 mx-auto">
+                            <!-- Jobs Link -->
+                            <div class="mb-5">
+                                <a class="link" href="@Url.Action("Currentrecipes","Recipe")">
+                                    <i class="bi-chevron-left small ms-1"></i> Back to Recipes
+                                </a>
+                            </div>
+                            <!-- End Jobs Link -->
+                            <!-- Card -->
+                            <div class="card card-lg">
+                                <div class="card-body">
+                                    <!-- Title -->
+                                    <div class="row justify-content-sm-between align-items-sm-center mb-5">
+                                        <div class="col-sm mb-3 mb-sm-0">
+                                            <h1 class="card-title h2">Created By</h1>
+                                            <p class="card-text">@Model.Recipe.Username - @Model.Recipe.CreatedOn.Value.ToString("dd/MM/yyyy")</p>
+                                        </div>
+                                    </div>
+                                    <!-- End Title -->
+
+                                    <div class="mb-5">
+                                        <h2 class="h4">Ingredients:</h2>
+
+                                        <ul>
+                                            @foreach (var item in Model.RecipeIngredientsList)
+                                            {
+                                                <li>@item.IngredientName</li>
+                                            }
+                                        </ul>
+                                    </div>
+
+                                    <div class="mb-5 text-wrap">
+                                        <h2 class="h4">Instructions:</h2>
+
+                                        <p>@Model.Recipe.Instructions</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- End Card -->
+                        </div>
+                    </div>
+                    <!-- End Content -->
+                </div>
+            </div>
+        </div>
+</main>

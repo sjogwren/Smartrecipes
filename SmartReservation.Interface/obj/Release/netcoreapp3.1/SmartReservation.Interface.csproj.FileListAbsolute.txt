@@ -1,0 +1,13 @@
+C:\Users\zaino\Documents\Visual Studio 2019\Projects\SmartReservation\SmartReservation.Interface\bin\Release\netcoreapp3.1\SmartReservation.Interface.deps.json
+C:\Users\zaino\Documents\Visual Studio 2019\Projects\SmartReservation\SmartReservation.Interface\bin\Release\netcoreapp3.1\SmartReservation.Interface.dll
+C:\Users\zaino\Documents\Visual Studio 2019\Projects\SmartReservation\SmartReservation.Interface\bin\Release\netcoreapp3.1\SmartReservation.Interface.pdb
+C:\Users\zaino\Documents\Visual Studio 2019\Projects\SmartReservation\SmartReservation.Interface\bin\Release\netcoreapp3.1\SmartReservation.Model.dll
+C:\Users\zaino\Documents\Visual Studio 2019\Projects\SmartReservation\SmartReservation.Interface\bin\Release\netcoreapp3.1\SmartReservation.Model.pdb
+C:\Users\zaino\Documents\Visual Studio 2019\Projects\SmartReservation\SmartReservation.Interface\obj\Release\netcoreapp3.1\SmartReservation.Interface.csproj.AssemblyReference.cache
+C:\Users\zaino\Documents\Visual Studio 2019\Projects\SmartReservation\SmartReservation.Interface\obj\Release\netcoreapp3.1\SmartReservation.Interface.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\zaino\Documents\Visual Studio 2019\Projects\SmartReservation\SmartReservation.Interface\obj\Release\netcoreapp3.1\SmartReservation.Interface.AssemblyInfoInputs.cache
+C:\Users\zaino\Documents\Visual Studio 2019\Projects\SmartReservation\SmartReservation.Interface\obj\Release\netcoreapp3.1\SmartReservation.Interface.AssemblyInfo.cs
+C:\Users\zaino\Documents\Visual Studio 2019\Projects\SmartReservation\SmartReservation.Interface\obj\Release\netcoreapp3.1\SmartReservation.Interface.csproj.CoreCompileInputs.cache
+C:\Users\zaino\Documents\Visual Studio 2019\Projects\SmartReservation\SmartReservation.Interface\obj\Release\netcoreapp3.1\SmartReservation.Interface.csproj.CopyComplete
+C:\Users\zaino\Documents\Visual Studio 2019\Projects\SmartReservation\SmartReservation.Interface\obj\Release\netcoreapp3.1\SmartReservation.Interface.dll
+C:\Users\zaino\Documents\Visual Studio 2019\Projects\SmartReservation\SmartReservation.Interface\obj\Release\netcoreapp3.1\SmartReservation.Interface.pdb
